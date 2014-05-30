@@ -1,11 +1,9 @@
-flatloop
-========
+var flatloop = require('./flatloop');
 
-Node.js module making multiple/dynamic nested loops simple and easy to develop.
+/**
+* Example 1 : Simple Multiple Nested Loop
+*/
 
-Example 1 : Simple Multiple Nested Loop
----------------------------------------
-```javascript
 //Multiple Nested Loop (old style)
 for(var x=0; x<5; x+= 1) {
     for(var y=0; y<12; y+=2) {
@@ -23,13 +21,12 @@ var c = [5, 11, 2];
 flatloop.loop([a,b,c], function(x, y, z) {
     console.log('x=' + x.value + ' y=' + y.value + ' z='+ z.value);
 });
-```
 
-Example 2 : Dynamic Nested Loop
--------------------------------
-You can make nested loop the depth of which is dynamically created
+/**
+* Example 2 : Dynamic Nested Loop
+* You can make nested loop the depth of which is dynamically created
+*/
 
-```javascript
 var loopDepth = 5;  //simulate dynamic depth to 5
 var loopConds = []; //conditions for each loop
 for(var depth = 0; depth < loopDepth; depth++ ) {
@@ -44,36 +41,31 @@ flatloop.loop(loopConds, function() {
     }
     console.log(output);
 });
-```
 
-Example 3 : Omit step
----------------------
-If you omit the step value, then it would be 1
+/**
+* Example 3 : Omit step
+* If you omit the step value, then it would be 1
+*/
 
-```javascript
 flatloop.loop([[0,5],[0,6],[0,7]], function(x,y,z) {
     console.log('x=' + x.value + ' y=' + y.value + ' z='+ z.value);
 });
-```
 
-Example 4 : Break a loop
-------------------------
-If you want to break a loop in some condition, do it as follow.
+/**
+* Example 4 : Break a loop
+* If you want to break a loop in some condition, do it as follow.
+*/
 
-```javascript
 flatloop.loop([[0,5],[0,6],[0,7]], function(x,y,z) {
     if(y.value == z.value) return z.break = true; //when x.value is equal to y.value, then break the third loop
     console.log('x=' + x.value + ' y=' + y.value + ' z='+ z.value);
 });
-```
 
-Example 5 : Break whole loop
-----------------------------
-If you want to exit whole loops immediately, do it as follow.
+/**
+* Example 5 : Break whole loop
+*/
 
-```javascript
 flatloop.loop([[0,5],[0,6],[0,7]], function(x,y,z) {
-    if(y.value == 2) return false; //exit whole loops immediately
+    if(y.value == 2) return false; //break whole loop and stop immediately
     console.log('x=' + x.value + ' y=' + y.value + ' z='+ z.value);
 });
-```
